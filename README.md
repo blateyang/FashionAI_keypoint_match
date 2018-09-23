@@ -23,15 +23,16 @@ detectron/lib/datasets/data目录下添加训练和测试数据集文件夹（�
 1)在detectron/configs/getting_started/FashionAI_bbox.yaml配置文件中对单类服饰的训练
 参数进行配置，文件中以blouse的训练为例，其它类服饰只需修改Train和Test字段的数据集元
 组以及模型输出路径OUTPUT_DIR即可，其它参数保持不变
-2)在detectron/tools目录下执行python train_net.py --cfg ../configs/getting_started/FashionAI_bbox.yaml
+
+2)在detectron/tools目录下执行```python train_net.py --cfg ../configs/getting_started/FashionAI_bbox.yaml```
 命令即可开始训练
+
 3)训练结束后，程序默认会自动调用测试函数对训练得到的最终模型进行测试，也可手动执行测试
-程序，是在detectron/tools目录下执行python test_net.py --cfg ../configs/getting_started/FashionAI_bbox.yaml --wts 训练好的模型权值文件路径
+程序，是在detectron/tools目录下执行```python test_net.py --cfg ../configs/getting_started/FashionAI_bbox.yaml --wts 训练好的模型权值文件路径```
+
 4)执行预测需要使用detectron/tools目录下的infer_simple.py中的write_infer_bbox函数，执行
 预测的脚本命令格式如下
-python infer_simple.py --cfg ../configs/getting_started/FashionAI_bbox.yaml --wts
-训练好的模型权值文件路径 --output-dir 预测结果的输出路径 --input-data 需要预测的.csv文件 
-需要预测的图片路径
+```python infer_simple.py --cfg ../configs/getting_started/FashionAI_bbox.yaml --wts 训练好的模型权值文件路径 --output-dir 预测结果的输出路径 --input-data 需要预测的.csv 文件需要预测的图片路径```
 
 **3. 训练单类服饰的关键点检测模型**
 
@@ -39,17 +40,19 @@ python infer_simple.py --cfg ../configs/getting_started/FashionAI_bbox.yaml --wt
 参数进行配置，文件中以blouse的训练为例，其它类服饰只需修改Train和Test字段的DATASETS数据集元
 组、TRAIN字段的WEIGHTS(用前面训练好的对应服饰的目标检测模型）、KRCNN字段的NUM_KEYPOINTS以及
 模型输出路径OUTPUT_DIR即可，其它参数保持不变
+
 2)由于Mask R-CNN默认支持的只是人体关键点检测，若要训练服饰关键点,还需要对
 detectron/lib/datasets/json_dataset.py文件中的self.keypoint_flip_map字典进行修改，
 换成对应服饰类的关键点映射字典；此外，还需要对detectron/utils/keypoints.py文件也做
 类似的修改，把get_keypoints函数中的keypoints和keypoint_flip_map换成对应服饰类的。
+
 3)在detectron/tools目录下执行python train_net.py --cfg ../configs/getting_started/FashionAI_keypoint.yaml命令即可开始训练
+
 4)训练结束后，程序默认会自动调用测试函数对训练得到的最终模型进行测试，也可手动执行测试
-程序，是在detectron/tools目录下执行python test_net.py --cfg ../configs/getting_started/FashionAI_keypoint.yaml --wts 训练好的模型权值文件路径
+程序，是在detectron/tools目录下执行```python test_net.py --cfg ../configs/getting_started/FashionAI_keypoint.yaml --wts 训练好的模型权值文件路径```
+
 5)执行预测需要使用detectron/tools目录下的infer_simple.py中的write_infer_kpts函数，执行
 预测的脚本命令格式如下
-python infer_simple.py --cfg ../configs/getting_started/FashionAI_keypoint.yaml --wts
-训练好的模型权值文件路径 --output-dir 预测结果的输出路径 --input-data 需要预测的.csv文件 
-需要预测的图片路径
+```python infer_simple.py --cfg ../configs/getting_started/FashionAI_keypoint.yaml --wts 训练好的模型权值文件路径 --output-dir 预测结果的输出路径 --input-data 需要预测的.csv文件 需要预测的图片路径```
 
 **4. visualize.py文件中含有一些可视化模型训练过程和结果的函数**
