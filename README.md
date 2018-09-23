@@ -1,3 +1,4 @@
+FashionAI关键点定位比赛网址[传送门](https://tianchi.aliyun.com/competition/information.htm?spm=5176.11165320.5678.2.73a22af1h2wKGc&raceId=231648)
 ## 1.基本思路
 本次FashionAI关键点定位比赛我们采取的基本思路和方法是先利用提供的关键点标注文件生成
 包围关键点的bounding box标注文件，并制作成COCO json格式，利用目标检测框架detectron
